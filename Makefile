@@ -7,7 +7,7 @@ SOURCES = get_next_line.c get_next_line_utils.c
 OBJECTS = $(SOURCES:.c=.o)
 
 $(NAME): 
-	gcc -c $(CFLAGS) $(SOURCES)
+	gcc -c $(SOURCES)
 	ar -rc $(NAME) $(OBJECTS)
 
 all: $(NAME)

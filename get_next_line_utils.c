@@ -6,16 +6,19 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:52:30 by serraoui          #+#    #+#             */
-/*   Updated: 2023/11/25 22:27:43 by serraoui         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:39:16 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i])
 		i++;
