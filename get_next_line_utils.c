@@ -6,7 +6,7 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:52:30 by serraoui          #+#    #+#             */
-/*   Updated: 2023/11/27 13:39:16 by serraoui         ###   ########.fr       */
+/*   Updated: 2023/11/28 11:48:20 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*ft_strdup(const char *s1)
 	int		i;
 
 	i = 0;
+	if (!s1 || !ft_strlen(s1))
+		return (NULL);
 	dup = (char *) malloc((ft_strlen(s1) + 1) * sizeof(char));
 	if (!dup)
 		return (0);
@@ -48,14 +50,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*str;
 	size_t	i;
 
-	if (s[0] == '\0' || start > ft_strlen(s))
-	{
-		str = malloc(1 * sizeof(char));
-		if (!str)
-			return (NULL);
-		str[0] = '\0';
-		return (str);
-	}
+	// if (s[0] == '\0' || start > ft_strlen(s))
+	// {
+	// 	str = malloc(1 * sizeof(char));
+	// 	if (!str)
+	// 		return (NULL);
+	// 	str[0] = '\0';
+	// 	return (str);
+	// }
+
+	if(!s)
+		return (NULL);
 	if (ft_strlen(s) - start < (unsigned int)len)
 		len = ft_strlen(s) - start;
 	str = malloc((len + 1) * sizeof(char));
@@ -68,7 +73,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		i++;
 	}
 	str[i] = '\0';
-    //free(s);
 	return (str);
 }
 
@@ -104,15 +108,17 @@ char	*ft_strchr(const char *s, int c)
 	char	character;
 
 	character = (char) c;
-	if (character == '\0' && s)
-		return ((char *)(s + ft_strlen(s)));
+	if (!s)
+		return (NULL);
+	// if (character == '\0' && s)
+	// 	return ((char *)(s + ft_strlen(s)));
 	while (*s)
 	{
 		if (*s == (char)character)
 			return ((char *)s);
 		s++;
 	}
-	if (character == '\0')
-		return ((char *)s);
+	// if (character == '\0')
+	// 	return ((char *)s);
 	return (NULL);
 }
