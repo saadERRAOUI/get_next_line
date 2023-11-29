@@ -6,13 +6,11 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 23:52:57 by serraoui          #+#    #+#             */
-/*   Updated: 2023/11/28 11:54:22 by serraoui         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:25:35 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-# define BUFFER_SIZE 42
 
 //Todo : loop on the read s[BUFFER_SIZE] from the file 
 //! check if the return i of the read is not eqaul to -1 --> ERROR!
@@ -84,19 +82,26 @@ char *get_next_line(int fd)
 	}
 	return(NULL);
 }
-/*
+
 int main() {
-	int fd, i;
+	int fd, i, fd1;
 	char path[] = "./text.txt";
 	fd = open(path, O_RDONLY);
+	printf("[%i]\n", fd);
+	char path2[] = "./test2.txt";
+	fd1 = open(path2, O_RDONLY);
+	printf("[%i]\n", fd1);
 	i = 0;
-	while (i < 4)
-	{
-		printf("%s%%\n", get_next_line(fd));
-		//get_next_line(fd);
-		i++;
-	}
+	printf("%s%%\n", get_next_line(fd));
+	printf("*************************************\n");
+	printf("%s%%\n", get_next_line(fd1));
+	printf("*************************************\n");
+	printf("%s%%\n", get_next_line(fd));
+	printf("*************************************\n");
+	printf("%s%%\n", get_next_line(fd1));
 	//printf("%s%%\n", get_next_line(fd));
 	system("leaks a.out");
+	close(fd);
+	close(fd1);
 	return (0);
-}*/
+}
