@@ -6,7 +6,7 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:36:56 by serraoui          #+#    #+#             */
-/*   Updated: 2023/11/29 20:37:04 by serraoui         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:10:51 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (ft_strlen(s) - start < (unsigned int)len)
 		len = ft_strlen(s) - start;
-	str = malloc((len + 1) * sizeof(char));
+	str = (char *)malloc((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -74,9 +74,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		j;
 	char	*s;
 
-	if (!s1 && !s2)
-		return (0);
-	s = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+
+	s = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+    if (!s)
+        return (NULL);
 	i = 0;
 	while (s1 && s1[i])
 	{
@@ -101,16 +102,11 @@ char	*ft_strchr(const char *s, int c)
 	character = (char) c;
 	if (!s)
 		return (NULL);
-	// if (character == '\0' && s)
-	// 	return ((char *)(s + ft_strlen(s)));
 	while (*s)
 	{
-		//printf("+++ s[%c] character[%c]\n", *s, character);
 		if (*s == character)
 			return ((char *)s);
 		s++;
 	}
-	// if (character == '\0')
-	// 	return ((char *)s);
 	return (NULL);
 }

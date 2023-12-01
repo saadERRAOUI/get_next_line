@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saaderraoui <saaderraoui@student.42.fr>    +#+  +:+       +#+        */
+/*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 23:53:44 by serraoui          #+#    #+#             */
-/*   Updated: 2023/11/28 22:35:39 by saaderraoui      ###   ########.fr       */
+/*   Updated: 2023/11/29 21:40:59 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+//# define BUFFER_SIZE 30
 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 
-//char	*get_next_line(int fd);
+char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);

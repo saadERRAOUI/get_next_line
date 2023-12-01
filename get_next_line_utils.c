@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saaderraoui <saaderraoui@student.42.fr>    +#+  +:+       +#+        */
+/*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:52:30 by serraoui          #+#    #+#             */
-/*   Updated: 2023/11/28 22:00:27 by saaderraoui      ###   ########.fr       */
+/*   Updated: 2023/12/01 16:05:08 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (ft_strlen(s) - start < (unsigned int)len)
 		len = ft_strlen(s) - start;
-	str = malloc((len + 1) * sizeof(char));
+	str = (char *)malloc((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -67,6 +67,24 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
+char	*ft_strchr(const char *s, int c)
+{
+	char	character;
+
+	character = (char) c;
+	if (!s)
+		return (NULL);
+	while (*s)
+	{
+		//printf("+++ s[%c] character[%c]\n", *s, character);
+		if (*s == character)
+			return ((char *)s);
+		s++;
+	}
+	// if (character == '\0')
+	// 	return ((char *)s);
+	return (NULL);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -74,9 +92,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		j;
 	char	*s;
 
-	if (!s1 && !s2)
-		return (0);
-	s = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	// if (!s1 && !s2)
+	// 	return (NULL);
+	s = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!s)
+		return (NULL);
 	i = 0;
 	while (s1 && s1[i])
 	{
@@ -92,25 +112,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s[i + j] = 0;
 	free ((void *)s1);
 	return (s);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	char	character;
-
-	character = (char) c;
-	if (!s)
-		return (NULL);
-	// if (character == '\0' && s)
-	// 	return ((char *)(s + ft_strlen(s)));
-	while (*s)
-	{
-		//printf("+++ s[%c] character[%c]\n", *s, character);
-		if (*s == character)
-			return ((char *)s);
-		s++;
-	}
-	// if (character == '\0')
-	// 	return ((char *)s);
-	return (NULL);
 }

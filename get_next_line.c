@@ -6,7 +6,7 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 23:52:57 by serraoui          #+#    #+#             */
-/*   Updated: 2023/11/28 15:25:35 by serraoui         ###   ########.fr       */
+/*   Updated: 2023/11/29 21:52:11 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,40 @@ char *get_line__c(char **rest)
 	return (ret);
 }
 
+void	*ft_memset(void *b, int c, size_t len)
+{
+	unsigned char	*ptr;
+
+	ptr = (unsigned char *)b;
+	while (len--)
+		*ptr++ = (unsigned char)c;
+	return (b);
+}
+
 ssize_t read_buffer(char **rest, int fd)
 {
-	char		read_buff[BUFFER_SIZE + 1];
+	char	read_buff[BUFFER_SIZE + 1];
+	char	*temp;
 	ssize_t		r;
 
 	r = read(fd, read_buff, BUFFER_SIZE);
 	if (r == -1)
 	{
-		//Todo free rest before returning;
 		free(*rest);
 		(*rest) = NULL;
 		return (0);
 	}
 	// ** ft_strjoin frees the rest before returning the new one;
 	read_buff[r] = '\0';
-	(*rest) = ft_strjoin((*rest), read_buff);
+	temp = ft_strjoin((*rest), read_buff);
+	if (temp) {
+		(*rest) = temp;
+		//free(temp);
+	}
+	else {
+		(*rest) = NULL;
+		return (-1);
+	}
 	return (r);
 }
 
@@ -64,10 +82,14 @@ char *get_next_line(int fd)
 	ssize_t		r;
 
 	r = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	while(1)
 	{
 		r = read_buffer(&rest, fd);
 		//printf("[%zi]\n", r);
+		if (r == -1)
+			return (NULL);
 		if (ft_strchr(rest, '\n'))
 			return get_line__c(&rest);
 		if (r < BUFFER_SIZE)
@@ -82,7 +104,7 @@ char *get_next_line(int fd)
 	}
 	return(NULL);
 }
-
+/*
 int main() {
 	int fd, i, fd1;
 	char path[] = "./text.txt";
@@ -105,3 +127,13 @@ int main() {
 	close(fd1);
 	return (0);
 }
+
+int main() {
+	int fd, i, fd1;
+	char path[] = "./test_empty.text";
+	fd = open(path, O_RDONLY);
+	printf("[%i]==>%s%%\n", fd, get_next_line(fd));
+	system("leaks a.out");
+	close(fd);
+	return (0);
+}*/
