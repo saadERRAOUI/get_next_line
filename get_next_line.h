@@ -6,13 +6,12 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 23:53:44 by serraoui          #+#    #+#             */
-/*   Updated: 2023/11/29 21:40:59 by serraoui         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:52:09 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-//# define BUFFER_SIZE 30
 
 # include <stdio.h>
 # include <unistd.h>

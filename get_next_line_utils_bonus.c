@@ -6,12 +6,11 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:36:56 by serraoui          #+#    #+#             */
-/*   Updated: 2023/12/01 16:10:51 by serraoui         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:49:11 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
 
 size_t	ft_strlen(const char *s)
 {
@@ -50,7 +49,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*str;
 	size_t	i;
 
-	if(!s)
+	if (!s)
 		return (NULL);
 	if (ft_strlen(s) - start < (unsigned int)len)
 		len = ft_strlen(s) - start;
@@ -67,17 +66,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
 	int		j;
 	char	*s;
 
-
 	s = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-    if (!s)
-        return (NULL);
+	if (!s)
+		return (NULL);
 	i = 0;
 	while (s1 && s1[i])
 	{

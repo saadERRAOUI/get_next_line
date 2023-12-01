@@ -6,12 +6,11 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:52:30 by serraoui          #+#    #+#             */
-/*   Updated: 2023/12/01 16:05:08 by serraoui         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:49:56 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 size_t	ft_strlen(const char *s)
 {
@@ -50,7 +49,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*str;
 	size_t	i;
 
-	if(!s)
+	if (!s)
 		return (NULL);
 	if (ft_strlen(s) - start < (unsigned int)len)
 		len = ft_strlen(s) - start;
@@ -76,13 +75,10 @@ char	*ft_strchr(const char *s, int c)
 		return (NULL);
 	while (*s)
 	{
-		//printf("+++ s[%c] character[%c]\n", *s, character);
 		if (*s == character)
 			return ((char *)s);
 		s++;
 	}
-	// if (character == '\0')
-	// 	return ((char *)s);
 	return (NULL);
 }
 
@@ -92,8 +88,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		j;
 	char	*s;
 
-	// if (!s1 && !s2)
-	// 	return (NULL);
 	s = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!s)
 		return (NULL);
