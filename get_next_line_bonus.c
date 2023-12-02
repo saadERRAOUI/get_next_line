@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 14:53:21 by serraoui          #+#    #+#             */
-/*   Updated: 2023/12/01 20:55:43 by serraoui         ###   ########.fr       */
+/*   Created: 2023/11/21 23:52:57 by serraoui          #+#    #+#             */
+/*   Updated: 2023/12/02 21:38:21 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,23 @@ char	*get_line__c(char **rest)
 
 ssize_t	read_buffer(char **rest, int fd)
 {
-	char		read_buff[BUFFER_SIZE + 1];
-	ssize_t		r;
+	char	*read_buff;
+	ssize_t	r;
 
+	read_buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!read_buff)
+		return (0);
 	r = read(fd, read_buff, BUFFER_SIZE);
 	if (r == -1)
 	{
 		free(*rest);
+		free(read_buff);
 		(*rest) = NULL;
 		return (0);
 	}
 	read_buff[r] = '\0';
 	(*rest) = ft_strjoin((*rest), read_buff);
+	free(read_buff);
 	return (r);
 }
 
@@ -51,6 +56,9 @@ char	*get_next_line(int fd)
 	char		*ret;
 	ssize_t		r;
 
+	r = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	while (1)
 	{
 		r = read_buffer(&rest[fd], fd);

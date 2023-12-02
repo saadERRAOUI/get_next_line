@@ -6,7 +6,7 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:54:08 by serraoui          #+#    #+#             */
-/*   Updated: 2023/12/01 20:46:38 by serraoui         ###   ########.fr       */
+/*   Updated: 2023/12/02 21:02:01 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 32
+#endif
+
+#if BUFFER_SIZE > 2147483647
+# define BUFFER_SIZE 0
+#endif
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);

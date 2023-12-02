@@ -6,7 +6,7 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 23:52:57 by serraoui          #+#    #+#             */
-/*   Updated: 2023/12/01 20:54:43 by serraoui         ###   ########.fr       */
+/*   Updated: 2023/12/02 21:09:50 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,23 @@ void	*ft_memset(void *b, int c, size_t len)
 
 ssize_t	read_buffer(char **rest, int fd)
 {
-	char	read_buff[BUFFER_SIZE + 1];
+	char	*read_buff;
 	ssize_t	r;
 
+	read_buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!read_buff)
+		return (0);
 	r = read(fd, read_buff, BUFFER_SIZE);
 	if (r == -1)
 	{
 		free(*rest);
+		free(read_buff);
 		(*rest) = NULL;
 		return (0);
 	}
 	read_buff[r] = '\0';
 	(*rest) = ft_strjoin((*rest), read_buff);
+	free(read_buff);
 	return (r);
 }
 
@@ -62,8 +67,12 @@ char	*get_next_line(int fd)
 	ssize_t		r;
 
 	r = 0;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
+	{
+		free(rest);
+		rest = NULL;
 		return (NULL);
+	}
 	while (1)
 	{
 		r = read_buffer(&rest, fd);
